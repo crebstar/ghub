@@ -25,12 +25,28 @@ class IndexView(generic.ListView):
 		return context;
 
 
-class GameDetailView(generic.DetailView):
+class HubTestMixin(object):
+	'''
+	Testing out mixins
+	'''
+	numberTest = 5
+
+	def get_context_data(self, **kwargs):
+		kwargs.update({
+			'lama': 'TheDailyLama',
+			'numberTest': self.numberTest
+			})
+		return super(HubTestMixin, self).get_context_data(**kwargs)
+
+class GameDetailView(HubTestMixin, generic.DetailView):
+	'''
+	DetailViews exist for the purpose of displaying detail on an
+	individual object. It inherits from the SingleObjectMixin which
+	provides the get_object() method which figures out the object based on
+	the url of the request (looks for slug or pk)
+	'''
 	template_name = 'gamehub/gamedetail.html'
 	model = Game
-
-	# I think ideally I should be narrowing the result set in 
-	# the get_queryset function
 
 	def get_context_data(self, **kwargs):
 		context = super(GameDetailView, self).get_context_data(**kwargs)

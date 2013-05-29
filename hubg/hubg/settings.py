@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'gamehub',
     'south',
+    'compressor'
 )
 
 # A sample logging configuration. The only tangible logging
