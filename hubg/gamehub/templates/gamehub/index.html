@@ -1,0 +1,38 @@
+{% extends "gamehub/layout.html" %}
+
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block main %} 
+
+<div class="mainBodyGameHub">
+
+	<h3 class="GameHub titles"> 	GameHub - {{ title }} </h3>
+	<ul class="gameHubList">
+		{% for game in games %}
+			
+			<li class="gamehubGameItem"> 
+				<a>
+					{{ game.name }}
+				</a> 
+			</li>
+		{% endfor %}
+
+	</ul>
+
+
+</div>
+
+<div id="gameHubFooter">
+
+	<br>
+	<br>
+
+	<p> GameHub developed by {{ dev }} </p> 
+
+	<br>
+	<br>
+
+</div>
+
+{% endblock %}

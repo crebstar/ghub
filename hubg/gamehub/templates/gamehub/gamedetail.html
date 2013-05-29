@@ -1,0 +1,24 @@
+{% extends "gamehub/layout.html" %}
+
+
+
+
+{% block main %}
+<h3> Game Detail Page <h3>
+
+<div>
+	<h2 id="gameTitle"> {{ gameSelected.name }}	<h2>
+
+	<p id="gameGenre"> {{ gameDescription.genre }} </p>
+
+	<p id="gameDescription"> {{ gameDescription.description }} </p>
+
+	<br>
+
+
+</div>
+
+<a> Go back to GameHub Game Listing </a>
+
+
+{% endblock %}
