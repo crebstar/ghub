@@ -12,7 +12,7 @@
 		{% for game in games %}
 			
 			<li class="gamehubGameItem"> 
-				<a>
+				<a href="{% url 'gamehub:gamedetail' game.id %}">
 					{{ game.name }}
 				</a> 
 			</li>

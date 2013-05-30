@@ -1,9 +1,18 @@
+{% load compress %}
+{# This is so django-compressor can work #}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<title> {% block title %} Welcome {% endblock %} GameHub Rev </title>
+
+
+	{% compress css %}
+	{# rel defines the relationship between this document and the linked sheet #}
+		<link rel="stylesheet" href="{{ STATIC_URL }}gamehub.less" type="text/less">
+	{% endcompress %}
+
 
 
 </head>

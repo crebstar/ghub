@@ -1,4 +1,5 @@
 # Django settings for hubg project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -8,6 +9,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+PROJECT_ROOT = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
 
 DATABASES = {
     'default': {
@@ -57,7 +60,9 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '..', 'assets', 'static')
+#OLD
+#STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -76,6 +81,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -153,3 +159,22 @@ LOGGING = {
         },
     }
 }
+
+COMPRESS_PRECOMPILERS = (
+    # (( Paul disabled coffee for now ))
+    #('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+
+STATICFILES_STORAGE = 'gamehub.storage.StaticRootS3BotoStorage'
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+'''
+
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_URL = STATIC_URL
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_OUTPUT_DIR = 'cache'
+
+'''
