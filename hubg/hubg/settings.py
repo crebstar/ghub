@@ -5,12 +5,14 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('crebstar', 'crebstar.paul@yahoo.com'),
 )
 
 MANAGERS = ADMINS
 
 PROJECT_ROOT = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
+
+
 
 DATABASES = {
     'default': {
@@ -23,6 +25,8 @@ DATABASES = {
         'PORT': '5432',                      # Set to empty string for default.
     }
 }
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -128,7 +132,11 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'gamehub',
     'south',
-    'compressor'
+    'compressor',
+    'appconf', # required by compressor
+
+    
+
 )
 
 # A sample logging configuration. The only tangible logging
@@ -168,13 +176,12 @@ COMPRESS_PRECOMPILERS = (
 
 STATICFILES_STORAGE = 'gamehub.storage.StaticRootS3BotoStorage'
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_OFFLINE = True
-'''
+
 
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 COMPRESS_STORAGE = STATICFILES_STORAGE
 COMPRESS_OUTPUT_DIR = 'cache'
 
-'''

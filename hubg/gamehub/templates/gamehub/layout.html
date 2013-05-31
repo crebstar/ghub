@@ -1,5 +1,7 @@
-{% load compress %}
+
 {# This is so django-compressor can work #}
+{% load staticfiles %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +9,56 @@
 <head>
 	<title> {% block title %} Welcome {% endblock %} GameHub Rev </title>
 
-
-	{% compress css %}
+	{% if debug %}
+	
 	{# rel defines the relationship between this document and the linked sheet #}
-		<link rel="stylesheet" href="{{ STATIC_URL }}gamehub.less" type="text/less">
+		<link rel="stylesheet/less" href="{{ STATIC_URL }}gamehub/less/gamehub.less" type="text/less">
+		<script src="{{ STATIC_URL }}gamehub/js/less-1.3.0.min.js"></script>
+	
+	{% else %}
+	{% compress css %}
+	
+	<link rel="stylesheet" type="text/less" media="all" href="{{ STATIC_URL }}less/style.less" />
 	{% endcompress %}
+	{% endif %}
 
 
 
 </head>
 
 <body>
+	
+	{% block navbar %}
+
+	<!-- The nav tag is a new HTML tag which represents a collection of links -->
+	<nav id="util-nav" class="navbar site-nav">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<div class="navbar">
+						<div class="navbar-inner">
+							<ul class="nav">
+								<li>
+									<a href="{% url 'gamehub:index' %}">GameHub</a>
+								</li>
+								<li>
+									<a href="">About</a>
+								</li>
+								<li>
+									<a href="">Contact Us</a>
+								</li>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+	</nav>
+
+	{% endblock %}
 
 	{% block main %}
 		<h1>Please extend main block </h1>
